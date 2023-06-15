@@ -3,15 +3,21 @@ from .models import Shop
 from geopy.distance import geodesic
 from django.db.models import Q
 import math
+from django.views.decorators.csrf import csrf_exempt
 
+
+
+@csrf_exempt
 def shop_list(request):
     shops = Shop.objects.all()
     return render(request, 'list.html', {'shops': shops})
 
+@csrf_exempt
 def shop_detail(request, shop_id):
     shop = get_object_or_404(Shop, pk=shop_id)
     return render(request, 'detail.html', {'shop': shop})
 
+@csrf_exempt
 def shop_create(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -21,6 +27,7 @@ def shop_create(request):
         return redirect('shop_detail', shop_id=shop.id)
     return render(request, 'create.html')
 
+@csrf_exempt
 def shop_update(request, shop_id):
     shop = get_object_or_404(Shop, pk=shop_id)
     if request.method == 'POST':
@@ -31,6 +38,7 @@ def shop_update(request, shop_id):
         return redirect('shop_detail', shop_id=shop.id)
     return render(request, 'update.html', {'shop': shop})
 
+@csrf_exempt
 def shop_delete(request, shop_id):
     shop = get_object_or_404(Shop, pk=shop_id)
     print(request.method)
@@ -41,6 +49,7 @@ def shop_delete(request, shop_id):
         return redirect('shop_list')
     return render(request, 'delete.html', {'shop': shop})
 
+@csrf_exempt
 def shop_within_distance(request):
     if request.method == 'POST':
         latitude = float(request.POST['latitude'])
