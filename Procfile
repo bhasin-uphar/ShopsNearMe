@@ -1,1 +1,1 @@
-web: gunicorn 'find_shop_near_me.wsgi'
+web: gunicorn find_shop_near_me.wsgi --log-file -
