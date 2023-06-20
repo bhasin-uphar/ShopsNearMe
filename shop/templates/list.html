@@ -3,6 +3,16 @@
 <head>
     <title>Shop List</title>
     <style>
+         .navbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .navbar button {
+            margin-left: 10px;
+        }
+
         body {
             font-family: Arial, sans-serif;
         }
@@ -53,16 +63,19 @@
 </head>
 <body>
     <div class="container">
+        <div class="navbar">
+            <button onclick="location.href='{% url 'logout' %}'"  class='button'>Logout</button>
+        </div>
         <h1>Shop List</h1>
-        <ul>
+        <table>
             {% for shop in shops %}
-                <li>
-                    <a href="{% url 'shop_detail' shop.id %}">{{ shop.name }}</a>
-                    <a href="{% url 'shop_update' shop.id %}" class="button" >Update</a>
-                    <a href="{% url 'shop_delete' shop.id %}" class="button">Delete</a>
-                </li>
+                <tr>
+                    <td><a href="{% url 'shop_detail' shop.id %}">{{ shop.name }}</a></td>
+                    <td><a href="{% url 'shop_update' shop.id %}" class="button" >Update</a></td>
+                    <td><a href="{% url 'shop_delete' shop.id %}" class="button">Delete</a></td>
+                </tr>
             {% endfor %}
-        </ul>
+            </table>
         <a href="{% url 'shop_create' %}" style="margin-left: 0px;" class="button">Create New Shop</a>
         <a href="{% url 'shop_within_distance' %}" style="margin-left: 0px;" class="button">Find Shops</a>
     </div>

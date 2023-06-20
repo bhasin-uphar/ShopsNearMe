@@ -19,6 +19,9 @@ from django.urls import path
 from shop import views
 
 urlpatterns = [
+    path('register/', views.register, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.user_logout, name='logout'),
     path('admin/', admin.site.urls),
     path('shops/', views.shop_list, name='shop_list'),
     path('shops/<int:shop_id>/', views.shop_detail, name='shop_detail'),
