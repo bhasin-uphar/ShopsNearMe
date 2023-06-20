@@ -26,6 +26,7 @@ def register(request):
     else:
         return render(request, 'register.html')
 
+@csrf_exempt
 def login_view(request):
     # API Endpoint for Login
     message=""
@@ -40,6 +41,7 @@ def login_view(request):
         message = "Incorrect Username or Password"
     return render(request, 'login.html', {"message":message})
 
+@csrf_exempt
 def user_logout(request):
     # API Endpoint for logout
     logout(request)
